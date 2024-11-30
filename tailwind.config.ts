@@ -11,13 +11,24 @@ export default {
       colors: {
         'primary-button': '#7F56D9',
         'primary-text': '#101828',
+        'secondary-text': '#344054',
         tertiary: '#475467',
       },
+      backgroundColor: {
+        secondary: '#F9FAFB',
+      },
       borderColor: {
+        primary: '#D0D5DD',
         secondary: '#EAECF0',
+        secondaryButton: '#D6BBFB',
+        secondaryButtonGray: '#D0D5DD',
       },
       gap: {
         xs: '8px',
+        s: '16px',
+        m: '24px',
+        l: '32px',
+        xl: '40px',
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],

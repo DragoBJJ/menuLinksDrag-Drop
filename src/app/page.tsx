@@ -1,11 +1,15 @@
-import { Menu } from '../components/organisms/Menu';
+import { Menu } from '../components/organisms/Menu/Menu';
+import { NavigationForm } from '../components/organisms/NavigationForm/NavigationForm';
 import { DiscountTemplate } from '../components/templates/DiscountTemplate';
 
 export default function Home() {
   return (
     <div className="m-auto flex min-h-[100vh] w-[100vw] items-start justify-center bg-white p-20">
       <DiscountTemplate>
-        <Menu />
+        <div className="gap-l flex h-full w-full flex-col items-center justify-center">
+          <Menu />
+          <NavigationForm />
+        </div>
       </DiscountTemplate>
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
         {/* <a

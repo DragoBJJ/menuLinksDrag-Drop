@@ -7,7 +7,7 @@ type DescriptionProps = {
 
 export const Description = memo<DescriptionProps>(({ text, place = 'center' }) => {
   return (
-    <div className={`text-tertiary font-inter text-sm text-text-tertiary text-${place}`}>
+    <div className={`text-text-tertiary font-inter text-sm text-tertiary text-${place}`}>
       {text}
     </div>
   );
