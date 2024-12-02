@@ -2,6 +2,7 @@
 
 import { memo } from 'react';
 import { useForm } from 'react-hook-form';
+import DeleteIcon from '../../../../public/images/delete.svg';
 import { wrapper } from '../../../styles/style';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/Form/data';
@@ -22,11 +23,15 @@ export const NavigationForm = memo<NavigationFormProps>(() => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`${wrapper} border-primary w-[1168px] p-6`}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={`${wrapper} relative w-[1168px] border-primary p-6`}
+    >
+      <DeleteIcon className="absolute right-[36.5px] top-[32.5px] cursor-pointer" />
       <div className="flex h-full w-full flex-col gap-xs">
         <FormField
           type="text"
-          placeholder="SpaceX"
+          placeholder="np. Promocje"
           label="Nazwa"
           name="company"
           register={register}
@@ -34,7 +39,7 @@ export const NavigationForm = memo<NavigationFormProps>(() => {
         />
         <FormField
           type="text"
-          placeholder="www.github.com"
+          placeholder="Wklej lub wyszukaj"
           label="Link"
           name="link"
           register={register}

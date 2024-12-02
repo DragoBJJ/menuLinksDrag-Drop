@@ -30,6 +30,12 @@ export default {
         l: '32px',
         xl: '40px',
       },
+      padding: {
+        md: '12px',
+        xl: '16px',
+        '2xl': '20px',
+        '3xl': '24px',
+      },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
       },

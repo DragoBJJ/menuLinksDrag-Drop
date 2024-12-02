@@ -8,7 +8,7 @@ type HeaderProps = {
 export const Header = memo<HeaderProps>(({ title, place = 'center' }) => {
   return (
     <div
-      className={`text-primary-text items-center justify-center text-pretty font-inter text-base font-semibold text-${place}`}
+      className={`items-center justify-center text-pretty font-inter text-base font-semibold text-primary-text text-${place}`}
     >
       <h2>{title}</h2>
     </div>
