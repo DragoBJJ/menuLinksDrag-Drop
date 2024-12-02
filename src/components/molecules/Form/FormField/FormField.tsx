@@ -10,7 +10,7 @@ const FormField = <T extends Record<string, any>>({
   valueAsNumber,
 }: FormFieldProps<T>) => (
   <div className="flex w-[1064px] flex-col items-start justify-start">
-    <label htmlFor={name} className="text-base font-medium text-secondary-text">
+    <label htmlFor={name} className="text-secondary-dark text-base font-medium">
       {label}
     </label>
     <input

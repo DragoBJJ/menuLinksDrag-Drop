@@ -1,4 +1,4 @@
 export const buttonStyle = {
-  primary: 'w-[193px] bg-primary-button text-white',
-  secondary: 'w-[72px] bg-white text-black border-secondaryButton  mt-6',
+  primary: 'w-[193px] h-10 bg-primary-button',
+  secondary: 'w-[72px] h-10 bg-white text-secondary-dark border-secondary-border-gray',
 };

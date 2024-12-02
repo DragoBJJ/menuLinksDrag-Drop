@@ -1,4 +1,5 @@
-export type NavDataForm = {
+export type Link = {
+  id: number;
   title: string;
   url: string;
 };

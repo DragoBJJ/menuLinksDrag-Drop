@@ -1,25 +1,39 @@
 'use client';
 
-import { memo } from 'react';
+import { Dispatch, memo, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import DeleteIcon from '../../../../public/images/delete.svg';
 import { wrapper } from '../../../styles/style';
+import { Link } from '../../../types/data';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/Form/data';
 import FormField from '../../molecules/Form/FormField/FormField';
 
-type NavigationFormProps = {};
+type NavigationFormProps = {
+  setLinks: Dispatch<SetStateAction<Link[]>>;
+};
 
-export const NavigationForm = memo<NavigationFormProps>(() => {
+export const NavigationForm = memo<NavigationFormProps>(({ setLinks }) => {
   const {
     register,
+
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setError,
   } = useForm<NavDataForm>();
 
+  const clearInputs = () => {};
+
   const onSubmit = async (data: NavDataForm) => {
-    console.log('SUCCESS', data);
+    if (isValid) {
+      setLinks((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          ...data,
+        },
+      ]);
+    }
   };
 
   return (
@@ -33,23 +47,27 @@ export const NavigationForm = memo<NavigationFormProps>(() => {
           type="text"
           placeholder="np. Promocje"
           label="Nazwa"
-          name="company"
+          name="title"
           register={register}
-          error={errors.company}
+          error={errors.title}
         />
         <FormField
           type="text"
           placeholder="Wklej lub wyszukaj"
           label="Link"
-          name="link"
+          name="url"
           register={register}
-          error={errors.link}
+          error={errors.url}
         />
       </div>
 
-      <div className="mr-auto flex items-start justify-center gap-xs">
-        <Button type="secondary" title="Anuluj" className="border-secondaryButtonGray" />
-        <Button type="secondary" title="Dodaj" />
+      <div className="mr-auto mt-6 flex items-start justify-center gap-xs">
+        <Button type="secondary" title="Anuluj" />
+        <Button
+          type="secondary"
+          title="Dodaj"
+          className="text-secondary-purple border-secondary-border-purple"
+        />
       </div>
     </form>
   );
