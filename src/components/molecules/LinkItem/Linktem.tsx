@@ -7,16 +7,17 @@ import { ActionButtons } from '../ActionButtons/ActionButtons';
 
 type LinkItemProps = {
   icon?: ReactNode;
+  id: number;
   title: string;
-  description: string;
+  url: string;
   setLinks: Dispatch<SetStateAction<Link[]>>;
 };
 
-export const LinkItem = memo<LinkItemProps>(({ icon, title, description, setLinks }) => {
+export const LinkItem = memo<LinkItemProps>(({ icon, id, title, url, setLinks }) => {
   const [showForm, setShowForm] = useState(false);
 
   const deleteLinkItem = () => {
-    setLinks((prev) => prev.filter((link) => link.title !== title));
+    setLinks((prev) => prev.filter((link) => link.id !== id));
   };
   return (
     <div className="flex h-full w-full flex-col">
@@ -24,7 +25,7 @@ export const LinkItem = memo<LinkItemProps>(({ icon, title, description, setLink
         {icon}
         <div className="flex w-full flex-col items-start justify-center gap-[6px]">
           <Header title={title} />
-          <Description text={description} />
+          <Description text={url} />
         </div>
         <ActionButtons setVisibleForm={setShowForm} deleteLinkItem={deleteLinkItem} />
       </div>

@@ -13,7 +13,7 @@ import { NavFormShema } from '../../molecules/Form/type';
 
 type NavigationFormProps = {
   setLinks: Dispatch<SetStateAction<Link[]>>;
-  setShowForm?: Dispatch<SetStateAction<boolean>>;
+  setShowForm: Dispatch<SetStateAction<boolean>>;
 };
 
 export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm }) => {
@@ -26,10 +26,6 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm
   } = useForm<NavDataForm>({
     resolver: zodResolver(NavFormShema),
   });
-
-  console.log('errors', errors);
-
-  const clearInputs = () => {};
 
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {
@@ -51,7 +47,10 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm
       onSubmit={handleSubmit(onSubmit)}
       className={`${wrapper} relative w-[1168px] border-primary p-6`}
     >
-      <DeleteIcon className="absolute right-[36.5px] top-[32.5px] cursor-pointer" />
+      <div onClick={() => setShowForm(false)}>
+        <DeleteIcon className="absolute right-[36.5px] top-[32.5px] cursor-pointer" />
+      </div>
+
       <div className="flex h-full w-full flex-col gap-xs">
         <FormField
           type="text"

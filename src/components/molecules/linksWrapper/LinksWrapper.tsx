@@ -1,12 +1,12 @@
-import { memo, PropsWithChildren, useState } from 'react';
-import { Button } from '../atoms/Button/Button';
+import { Dispatch, memo, PropsWithChildren, SetStateAction } from 'react';
+import { Button } from '../../atoms/Button/Button';
 
 type MenuItemProps = {
   setLinks: (links: any) => void;
+  setShowForm: Dispatch<SetStateAction<boolean>>;
 } & Required<PropsWithChildren>;
 
-export const MenuLinks = memo<MenuItemProps>(({ children, setLinks }) => {
-  const [showForm, setShowForm] = useState(false);
+export const LinksWrapper = memo<MenuItemProps>(({ children, setLinks, setShowForm }) => {
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-md border-[1px] border-primary">
       {children}
