@@ -5,13 +5,13 @@ import MenuItemIcon from '../../../public/images/menuItem.svg';
 import { Link } from '../../types/data';
 import { MenuLinks } from '../MenuLinks/MenuLinks';
 import { ActionButtons } from '../molecules/ActionButtons/ActionButtons';
+import { LinkItem } from '../molecules/LinkItem/Linktem';
 import { Menu } from '../molecules/Menu/Menu';
-import { MenuItem } from '../molecules/MenuItem/MenuItem';
 import { NavigationForm } from '../organisms/NavigationForm/NavigationForm';
 
-type DiscountTemplateProps = {};
+type NavigationTemplateProps = {};
 
-export const DiscountTemplate = memo<DiscountTemplateProps>(() => {
+export const NavigationTemplate = memo<NavigationTemplateProps>(() => {
   const [links, setLinks] = useState<Link[]>([]);
   const [showForm, setShowForm] = useState(false);
 
@@ -19,11 +19,11 @@ export const DiscountTemplate = memo<DiscountTemplateProps>(() => {
     <div className="flex h-full w-full flex-col items-center justify-center p-6">
       <div className="flex h-full w-full flex-col items-center justify-center gap-l">
         {!links.length && <Menu setShowForm={setShowForm} />}
-        {showForm && <NavigationForm setLinks={setLinks} />}
+        {showForm && <NavigationForm setLinks={setLinks} setShowForm={setShowForm} />}
         {links.length && (
-          <MenuLinks setLinks={setLinks}>
+          <MenuLinks setLinks={setLinks} setShowForm={setShowForm}>
             {links.map(({ title, url }, index) => (
-              <MenuItem
+              <LinkItem
                 key={`${url}-${index}`}
                 icon={<MenuItemIcon className="mr-4 flex" />}
                 title={title}
@@ -34,6 +34,14 @@ export const DiscountTemplate = memo<DiscountTemplateProps>(() => {
                     secondTitle="Edytuj"
                     threeTitle="Dodaj pozycję menu"
                   />
+                }
+                showForm={showForm}
+                form={
+                  showForm ? (
+                    <NavigationForm setLinks={setLinks} setShowForm={setShowForm} />
+                  ) : (
+                    <></>
+                  )
                 }
               />
             ))}

@@ -11,12 +11,12 @@ import FormField from '../../molecules/Form/FormField/FormField';
 
 type NavigationFormProps = {
   setLinks: Dispatch<SetStateAction<Link[]>>;
+  setShowForm: Dispatch<SetStateAction<boolean>>;
 };
 
-export const NavigationForm = memo<NavigationFormProps>(({ setLinks }) => {
+export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm }) => {
   const {
     register,
-
     handleSubmit,
     formState: { errors, isValid },
     setError,
@@ -34,6 +34,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks }) => {
         },
       ]);
     }
+    setShowForm(false);
   };
 
   return (
