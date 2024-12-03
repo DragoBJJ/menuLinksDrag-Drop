@@ -23,6 +23,7 @@ export default {
         secondary: '#EAECF0',
         'secondary-border-purple': '#D6BBFB',
         'secondary-border-gray': '#D0D5DD',
+        'third-border-purple': '#9747FF',
       },
       gap: {
         xs: '8px',

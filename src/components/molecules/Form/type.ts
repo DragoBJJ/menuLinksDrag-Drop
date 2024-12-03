@@ -11,6 +11,7 @@ export type FormFieldProps<T extends FieldValues> = {
   placeholder: string;
   name: Path<T>;
   label: string;
+  defaultValue?: string;
   register: UseFormRegister<T>;
   error?: FieldError;
   valueAsNumber?: boolean;

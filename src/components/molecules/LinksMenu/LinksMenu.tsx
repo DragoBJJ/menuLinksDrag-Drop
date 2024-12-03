@@ -1,4 +1,4 @@
-import { Dispatch, memo, SetStateAction } from 'react';
+import { memo } from 'react';
 import AddIcon from '../../../../public/images/add.svg';
 import { wrapper } from '../../../styles/style';
 import { Button } from '../../atoms/Button/Button';
@@ -6,10 +6,10 @@ import { Description } from '../../atoms/Description/Description';
 import { Header } from '../../atoms/Header/Header';
 
 type MenuProps = {
-  setShowForm: Dispatch<SetStateAction<boolean>>;
+  setAddLinkAction: () => void;
 };
 
-export const LinksMenu = memo<MenuProps>(({ setShowForm }) => {
+export const LinksMenu = memo<MenuProps>(({ setAddLinkAction }) => {
   return (
     <div className={`${wrapper} border-secondary bg-secondary p-6`}>
       <div className="flex flex-col items-center justify-center gap-xs">
@@ -19,7 +19,7 @@ export const LinksMenu = memo<MenuProps>(({ setShowForm }) => {
       <Button
         title="Dodaj pozycję menu"
         icon={<AddIcon className="cursor-pointer" />}
-        onClick={() => setShowForm((prev) => !prev)}
+        onClick={() => setAddLinkAction()}
         className="mt-6 gap-[4px]"
       />
     </div>

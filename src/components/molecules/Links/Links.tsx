@@ -15,7 +15,7 @@ export const Links = memo<LinksProps>(({ links, setLinks }) => {
       key={`${link.url}-${index}`}
       icon={<MenuItemIcon className="mr-4 flex" />}
       setLinks={setLinks}
-      {...link}
+      link={link}
     />
   ));
 });
