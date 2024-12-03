@@ -1,11 +1,10 @@
 'use client';
 
 import { memo, useState } from 'react';
-import MenuItemIcon from '../../../public/images/menuItem.svg';
 import { Link } from '../../types/data';
-import { LinkItem } from '../molecules/LinkItem/Linktem';
-import { LinksWrapper } from '../molecules/linksWrapper/LinksWrapper';
-import { Menu } from '../molecules/Menu/Menu';
+import { Links } from '../molecules/Links/Links';
+import { LinksMenu } from '../molecules/LinksMenu/LinksMenu';
+import { LinksWrapper } from '../molecules/LinksWrapper/LinksWrapper';
 import { NavigationForm } from '../organisms/NavigationForm/NavigationForm';
 
 type NavigationTemplateProps = {};
@@ -21,18 +20,11 @@ export const NavigationTemplate = memo<NavigationTemplateProps>(() => {
       <div className="flex h-full w-full flex-col items-center justify-center gap-l">
         {links.length ? (
           <LinksWrapper setLinks={setLinks} setShowForm={setShowForm}>
-            {links.map((link, index) => (
-              <LinkItem
-                key={`${link.url}-${index}`}
-                icon={<MenuItemIcon className="mr-4 flex" />}
-                setLinks={setLinks}
-                {...link}
-              />
-            ))}
+            <Links links={links} setLinks={setLinks} />
           </LinksWrapper>
         ) : (
           <>
-            <Menu setShowForm={setShowForm} />
+            <LinksMenu setShowForm={setShowForm} />
           </>
         )}
         {showForm && <NavigationForm setLinks={setLinks} setShowForm={setShowForm} />}

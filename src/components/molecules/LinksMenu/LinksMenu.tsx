@@ -9,7 +9,7 @@ type MenuProps = {
   setShowForm: Dispatch<SetStateAction<boolean>>;
 };
 
-export const Menu = memo<MenuProps>(({ setShowForm }) => {
+export const LinksMenu = memo<MenuProps>(({ setShowForm }) => {
   return (
     <div className={`${wrapper} border-secondary bg-secondary p-6`}>
       <div className="flex flex-col items-center justify-center gap-xs">
