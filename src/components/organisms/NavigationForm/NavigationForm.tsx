@@ -13,13 +13,14 @@ import { NavFormShema } from '../../molecules/Form/type';
 
 type NavigationFormProps = {
   setLinks: Dispatch<SetStateAction<Link[]>>;
-  setShowForm: Dispatch<SetStateAction<boolean>>;
+  setShowForm?: Dispatch<SetStateAction<boolean>>;
 };
 
 export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
     setError,
   } = useForm<NavDataForm>({
@@ -40,8 +41,9 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm
           url: data.url || '',
         },
       ]);
+      reset();
+      setShowForm && setShowForm(false);
     }
-    setShowForm(false);
   };
 
   return (

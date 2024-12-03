@@ -1,25 +1,25 @@
-import { memo } from 'react';
+import { Dispatch, memo, SetStateAction } from 'react';
 import { Button } from '../../atoms/Button/Button';
 
 type ActionButtonsProps = {
-  firstTitle: string;
-  secondTitle: string;
-  threeTitle: string;
+  setVisibleForm: Dispatch<SetStateAction<boolean>>;
+  deleteLinkItem: () => void;
 };
 
-export const ActionButtons = memo<ActionButtonsProps>(({ firstTitle, secondTitle, threeTitle }) => {
+export const ActionButtons = memo<ActionButtonsProps>(({ setVisibleForm, deleteLinkItem }) => {
   return (
     <div className="flex items-center justify-center">
-      <Button type="secondary" title={firstTitle} className="rounded-r-none" />
+      <Button type="secondary" title="Usuń" className="rounded-r-none" onClick={deleteLinkItem} />
       <Button
         type="secondary"
-        title={secondTitle}
+        title="Edytuj"
         className="rounded-l-none rounded-r-none border-l-0 border-r-0"
       />
       <Button
+        onClick={() => setVisibleForm((prev) => !prev)}
         type="primary"
-        title={threeTitle}
-        className="text-secondary-dark border-secondary-border-gray rounded-l-none bg-white"
+        title="Dodaj pozycję menu"
+        className="rounded-l-none border-secondary-border-gray bg-white text-secondary-dark"
       />
     </div>
   );
