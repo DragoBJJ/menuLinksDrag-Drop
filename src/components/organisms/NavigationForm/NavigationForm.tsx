@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Dispatch, memo, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
 import DeleteIcon from '../../../../public/images/delete.svg';
@@ -8,6 +9,7 @@ import { Link } from '../../../types/data';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/Form/data';
 import FormField from '../../molecules/Form/FormField/FormField';
+import { NavFormShema } from '../../molecules/Form/type';
 
 type NavigationFormProps = {
   setLinks: Dispatch<SetStateAction<Link[]>>;
@@ -20,7 +22,11 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm
     handleSubmit,
     formState: { errors, isValid },
     setError,
-  } = useForm<NavDataForm>();
+  } = useForm<NavDataForm>({
+    resolver: zodResolver(NavFormShema),
+  });
+
+  console.log('errors', errors);
 
   const clearInputs = () => {};
 
@@ -30,7 +36,8 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm
         ...prev,
         {
           id: prev.length + 1,
-          ...data,
+          title: data.title,
+          url: data.url || '',
         },
       ]);
     }
@@ -67,7 +74,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setShowForm
         <Button
           type="secondary"
           title="Dodaj"
-          className="text-secondary-purple border-secondary-border-purple"
+          className="border-secondary-border-purple text-secondary-purple"
         />
       </div>
     </form>

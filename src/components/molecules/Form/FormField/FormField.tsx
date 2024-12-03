@@ -1,6 +1,9 @@
+import { FieldValues } from 'react-hook-form';
+import { ErrorMessage } from '../../../atoms/ErrorMessage/ErrorMessage';
+import { Label } from '../../../atoms/Label/Lable';
 import { FormFieldProps } from '../type';
 
-const FormField = <T extends Record<string, any>>({
+const FormField = <T extends FieldValues>({
   type,
   placeholder,
   name,
@@ -10,16 +13,15 @@ const FormField = <T extends Record<string, any>>({
   valueAsNumber,
 }: FormFieldProps<T>) => (
   <div className="flex w-[1064px] flex-col items-start justify-start">
-    <label htmlFor={name} className="text-secondary-dark text-base font-medium">
-      {label}
-    </label>
+    <Label name={name} label={label} />
     <input
       type={type}
       placeholder={placeholder}
-      {...register(name, { valueAsNumber })}
       className="mt-2 h-10 w-full rounded-md border-[1px] border-primary px-3 py-4 text-base text-tertiary"
+      {...register(name, { valueAsNumber })}
     />
-    {error && <span className="error-message">{error.message}</span>}
+
+    <ErrorMessage message={error?.message} />
   </div>
 );
 
