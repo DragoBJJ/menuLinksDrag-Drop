@@ -23,7 +23,7 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
         <div className="flex w-full flex-col items-start justify-center gap-[6px]">
           <div className="flex items-center justify-center gap-2">
             <Header title={link.title} />
-            {link.tag && <Tag title={link.tag} />}
+            {link.tag && <Tag type="secondary" title={link.tag} />}
           </div>
           <Description text={link.url} />
         </div>

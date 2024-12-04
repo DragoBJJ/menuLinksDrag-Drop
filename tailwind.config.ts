@@ -17,6 +17,7 @@ export default {
         tertiary: '#475467',
       },
       backgroundColor: {
+        'primary-gray': '#D0D5DD',
         secondary: '#F9FAFB',
       },
       borderColor: {
