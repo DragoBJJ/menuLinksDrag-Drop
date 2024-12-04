@@ -1,5 +1,5 @@
 import { FieldValues } from 'react-hook-form';
-import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
+import { FormMessage } from '../../atoms/FormMessage/FormMessage';
 import { Label } from '../../atoms/Label/Lable';
 import { FormFieldProps } from './type';
 
@@ -22,8 +22,7 @@ const FormField = <T extends FieldValues>({
       className="mt-2 h-10 w-full rounded-md border-[1px] border-primary px-3 py-4 text-base text-tertiary"
       {...register(name, { valueAsNumber })}
     />
-
-    <ErrorMessage message={error?.message} />
+    <FormMessage type="error" message={error?.message} />
   </div>
 );
 
