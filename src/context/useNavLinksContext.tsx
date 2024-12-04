@@ -9,6 +9,7 @@ type NavLinksContextType = {
   addNewLink: (data: NavDataForm) => void;
   editLink: (data: NavDataForm, id: Link['id']) => void;
   deleteLink: (id: Link['id']) => void;
+  setNewLinksOrder: (newOrder: Link[]) => void;
 };
 
 type NavLinksProviderProps = {
@@ -50,8 +51,12 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
     setLinks((prev) => prev.filter((link) => link.id !== id));
   };
 
+  const setNewLinksOrder = (newOrder: Link[]) => {
+    setLinks(newOrder);
+  };
+
   return (
-    <NavLinksContext.Provider value={{ links, addNewLink, editLink, deleteLink }}>
+    <NavLinksContext.Provider value={{ links, addNewLink, editLink, deleteLink, setNewLinksOrder }}>
       {children}
     </NavLinksContext.Provider>
   );

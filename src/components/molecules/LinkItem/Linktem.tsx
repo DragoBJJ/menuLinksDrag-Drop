@@ -1,4 +1,6 @@
-import { memo, ReactNode } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { memo, ReactNode, useState } from 'react';
 import { useLinkAction } from '../../../hooks/useFormAction';
 import { Link } from '../../../types/data';
 import { Description } from '../../atoms/Description/Description';
@@ -15,10 +17,43 @@ type LinkItemProps = {
 
 export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
   const { linkAction, setAddLinkAction, setEditLinkAction, setOffLinkAction } = useLinkAction();
+  const [isDraggingEnabled, setIsDraggingEnabled] = useState(true);
+
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    disabled: !isDraggingEnabled,
+    id: link.id,
+  });
+  const setAddAction = () => {
+    setAddLinkAction();
+    setIsDraggingEnabled(false);
+  };
+
+  const setEditAction = () => {
+    setEditLinkAction();
+    setIsDraggingEnabled(false);
+  };
+
+  const setOffAction = () => {
+    setOffLinkAction();
+    setIsDraggingEnabled(true);
+  };
+
+  const dndStyle = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className="flex min-h-[46px] w-full items-center justify-center border-b-[1px] border-secondary bg-white px-3xl py-xl">
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      style={dndStyle}
+      className={`relative flex h-full w-full flex-col ${isDragging ? 'opacity-70' : 'opacity-100'}`}
+    >
+      <div
+        className={`m-auto flex min-h-[46px] w-full items-center justify-center border-b-[1px] border-secondary bg-white px-3xl py-xl`}
+      >
         {icon}
         <div className="flex w-full flex-col items-start justify-center gap-[6px]">
           <div className="flex items-center justify-center gap-2">
@@ -27,22 +62,23 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
           </div>
           <Description text={link.url} />
         </div>
+
         <ActionButtons
           deleteLink={() => deleteLink(link.id)}
-          setAddAction={setAddLinkAction}
-          setEditAction={setEditLinkAction}
+          setAddAction={setAddAction}
+          setEditAction={setEditAction}
         />
       </div>
 
       {linkAction === 'ADD' && (
         <div className="flex w-full bg-secondary px-3xl py-xl">
-          <NavigationForm setOffLinkAction={setOffLinkAction} />
+          <NavigationForm setOffLinkAction={setOffAction} />
         </div>
       )}
 
       {linkAction === 'EDIT' && (
         <div className="flex w-full bg-secondary px-3xl py-xl">
-          <NavigationForm setOffLinkAction={setOffLinkAction} link={link} />
+          <NavigationForm setOffLinkAction={setOffAction} link={link} />
         </div>
       )}
     </div>
