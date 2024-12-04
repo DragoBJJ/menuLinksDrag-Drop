@@ -3,6 +3,7 @@ import { useLinkAction } from '../../../hooks/useFormAction';
 import { Link } from '../../../types/data';
 import { Description } from '../../atoms/Description/Description';
 import { Header } from '../../atoms/Header/Header';
+import { Tag } from '../../atoms/Tag/Tag';
 import { NavigationForm } from '../../organisms/NavigationForm/NavigationForm';
 import { ActionButtons } from '../ActionButtons/ActionButtons';
 
@@ -20,7 +21,10 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
       <div className="flex min-h-[46px] w-full items-center justify-center border-b-[1px] border-secondary bg-white px-3xl py-xl">
         {icon}
         <div className="flex w-full flex-col items-start justify-center gap-[6px]">
-          <Header title={link.title} />
+          <div className="flex items-center justify-center gap-2">
+            <Header title={link.title} />
+            {link.tag && <Tag title={link.tag} />}
+          </div>
           <Description text={link.url} />
         </div>
         <ActionButtons

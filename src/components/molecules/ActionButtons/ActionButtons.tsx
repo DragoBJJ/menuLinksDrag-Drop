@@ -22,7 +22,7 @@ export const ActionButtons = memo<ActionButtonsProps>(
           onClick={() => setAddAction()}
           type="primary"
           title="Dodaj pozycję menu"
-          className="rounded-l-none border-secondary-border-gray bg-white text-secondary-dark"
+          className="rounded-l-none border-primary bg-white text-secondary-dark"
         />
       </div>
     );

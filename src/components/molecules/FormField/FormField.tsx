@@ -1,7 +1,7 @@
 import { FieldValues } from 'react-hook-form';
-import { ErrorMessage } from '../../../atoms/ErrorMessage/ErrorMessage';
-import { Label } from '../../../atoms/Label/Lable';
-import { FormFieldProps } from '../type';
+import { ErrorMessage } from '../../atoms/ErrorMessage/ErrorMessage';
+import { Label } from '../../atoms/Label/Lable';
+import { FormFieldProps } from './type';
 
 const FormField = <T extends FieldValues>({
   type,

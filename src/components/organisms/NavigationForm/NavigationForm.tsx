@@ -8,9 +8,9 @@ import { useNavLinksContext } from '../../../context/useNavLinksContext';
 import { wrapper } from '../../../styles/style';
 import { Link } from '../../../types/data';
 import { Button } from '../../atoms/Button/Button';
-import { NavDataForm } from '../../molecules/Form/data';
-import FormField from '../../molecules/Form/FormField/FormField';
-import { NavFormShema } from '../../molecules/Form/type';
+import { NavDataForm } from '../../molecules/FormField/data';
+import FormField from '../../molecules/FormField/FormField';
+import { NavFormShema } from '../../molecules/FormField/type';
 
 type NavigationFormProps = {
   setOffLinkAction: () => void;
@@ -78,7 +78,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
           actionType="submit"
           type="secondary"
           title={link ? 'Edytuj' : 'Dodaj'}
-          className="border-secondary-border-purple text-secondary-purple"
+          className="border-primary-purple text-secondary-purple"
         />
       </div>
     </form>

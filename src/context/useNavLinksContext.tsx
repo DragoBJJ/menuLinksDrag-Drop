@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, FC, ReactNode, useContext, useState } from 'react';
-import { NavDataForm } from '../components/molecules/Form/data';
+import { NavDataForm } from '../components/molecules/FormField/data';
 import { Link } from '../types/data';
 
 type NavLinksContextType = {
@@ -27,6 +27,7 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
         id: prev.length + 1,
         title: data.title,
         url: data.url || '',
+        tag: 'kolekcja',
       },
     ]);
   };

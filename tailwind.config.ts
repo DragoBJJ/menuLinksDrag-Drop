@@ -12,6 +12,7 @@ export default {
         'primary-button': '#7F56D9',
         'primary-text': '#101828',
         'secondary-dark': '#344054',
+        'primary-purple': '#D6BBFB',
         'secondary-purple': '#6941C6',
         tertiary: '#475467',
       },
@@ -21,8 +22,6 @@ export default {
       borderColor: {
         primary: '#D0D5DD',
         secondary: '#EAECF0',
-        'secondary-border-purple': '#D6BBFB',
-        'secondary-border-gray': '#D0D5DD',
         'third-border-purple': '#9747FF',
       },
       gap: {
