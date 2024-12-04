@@ -2,24 +2,24 @@ import { memo } from 'react';
 import { Button } from '../../atoms/Button/Button';
 
 type ActionButtonsProps = {
-  deleteLinkItem: () => void;
-  addLinkItem: () => void;
-  editLinkItem: () => void;
+  deleteLink: () => void;
+  addLinkAction: () => void;
+  editLinkAction: () => void;
 };
 
 export const ActionButtons = memo<ActionButtonsProps>(
-  ({ addLinkItem, deleteLinkItem, editLinkItem }) => {
+  ({ addLinkAction, deleteLink, editLinkAction }) => {
     return (
       <div className="flex items-center justify-center">
-        <Button type="secondary" title="Usuń" className="rounded-r-none" onClick={deleteLinkItem} />
+        <Button type="secondary" title="Usuń" className="rounded-r-none" onClick={deleteLink} />
         <Button
           type="secondary"
           title="Edytuj"
           className="rounded-l-none rounded-r-none border-l-0 border-r-0"
-          onClick={() => editLinkItem()}
+          onClick={() => editLinkAction()}
         />
         <Button
-          onClick={() => addLinkItem()}
+          onClick={() => addLinkAction()}
           type="primary"
           title="Dodaj pozycję menu"
           className="rounded-l-none border-secondary-border-gray bg-white text-secondary-dark"

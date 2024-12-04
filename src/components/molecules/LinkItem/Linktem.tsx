@@ -1,4 +1,4 @@
-import { Dispatch, memo, ReactNode, SetStateAction } from 'react';
+import { memo, ReactNode } from 'react';
 import { useLinkAction } from '../../../hooks/useFormAction';
 import { Link } from '../../../types/data';
 import { Description } from '../../atoms/Description/Description';
@@ -9,15 +9,11 @@ import { ActionButtons } from '../ActionButtons/ActionButtons';
 type LinkItemProps = {
   icon?: ReactNode;
   link: Link;
-  setLinks: Dispatch<SetStateAction<Link[]>>;
+  deleteLink: (id: Link['id']) => void;
 };
 
-export const LinkItem = memo<LinkItemProps>(({ icon, link, setLinks }) => {
-  const { setAddLinkAction, setEditLinkAction, linkAction, setOffLinkAction } = useLinkAction();
-
-  const deleteLinkItem = () => {
-    setLinks((prev) => prev.filter((link) => link.id !== link.id));
-  };
+export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
+  const { linkAction, setAddLinkAction, setEditLinkAction, setOffLinkAction } = useLinkAction();
 
   return (
     <div className="flex h-full w-full flex-col">
@@ -28,21 +24,21 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, setLinks }) => {
           <Description text={link.url} />
         </div>
         <ActionButtons
-          deleteLinkItem={deleteLinkItem}
-          addLinkItem={setAddLinkAction}
-          editLinkItem={setEditLinkAction}
+          deleteLink={() => deleteLink(link.id)}
+          addLinkAction={setAddLinkAction}
+          editLinkAction={setEditLinkAction}
         />
       </div>
 
       {linkAction === 'ADD' && (
         <div className="flex w-full bg-secondary px-3xl py-xl">
-          <NavigationForm setLinks={setLinks} setOffLinkAction={setOffLinkAction} />
+          <NavigationForm setOffLinkAction={setOffLinkAction} />
         </div>
       )}
 
       {linkAction === 'EDIT' && (
         <div className="flex w-full bg-secondary px-3xl py-xl">
-          <NavigationForm setLinks={setLinks} setOffLinkAction={setOffLinkAction} link={link} />
+          <NavigationForm setOffLinkAction={setOffLinkAction} link={link} />
         </div>
       )}
     </div>

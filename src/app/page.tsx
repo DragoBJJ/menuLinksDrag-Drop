@@ -1,9 +1,12 @@
 import { NavigationLinksTemplate } from '../components/templates/NavigationLinksTemplate';
+import { NavLinksProvider } from '../context/useNavLinksContext';
 
 export default function Home() {
   return (
     <div className="m-auto flex min-h-[100vh] w-full max-w-[100vw] items-start justify-center bg-white p-20">
-      <NavigationLinksTemplate />
+      <NavLinksProvider>
+        <NavigationLinksTemplate />
+      </NavLinksProvider>
       <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
         {/* <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"

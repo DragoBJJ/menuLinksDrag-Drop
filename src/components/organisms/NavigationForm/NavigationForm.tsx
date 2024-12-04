@@ -1,9 +1,10 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Dispatch, memo, SetStateAction } from 'react';
+import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import DeleteIcon from '../../../../public/images/delete.svg';
+import { useNavLinksContext } from '../../../context/useNavLinksContext';
 import { wrapper } from '../../../styles/style';
 import { Link } from '../../../types/data';
 import { Button } from '../../atoms/Button/Button';
@@ -12,46 +13,21 @@ import FormField from '../../molecules/Form/FormField/FormField';
 import { NavFormShema } from '../../molecules/Form/type';
 
 type NavigationFormProps = {
-  setLinks: Dispatch<SetStateAction<Link[]>>;
   setOffLinkAction: () => void;
   link?: Link;
 };
 
-export const NavigationForm = memo<NavigationFormProps>(({ setLinks, setOffLinkAction, link }) => {
+export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, link }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
-    setError,
   } = useForm<NavDataForm>({
     resolver: zodResolver(NavFormShema),
   });
 
-  const addNewLink = (data: NavDataForm) => {
-    setLinks((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        title: data.title,
-        url: data.url || '',
-      },
-    ]);
-  };
-
-  const editLink = (data: NavDataForm, id: Link['id']) => {
-    setLinks((prev) =>
-      prev.map((prevLink) =>
-        prevLink.id === id
-          ? {
-              ...prevLink,
-              title: data.title,
-              url: data.url || '',
-            }
-          : prevLink,
-      ),
-    );
-  };
+  const { addNewLink, editLink } = useNavLinksContext();
 
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {

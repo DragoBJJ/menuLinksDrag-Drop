@@ -1,9 +1,10 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo } from 'react';
+import MenuItemIcon from '../../../public/images/menuItem.svg';
+import { useNavLinksContext } from '../../context/useNavLinksContext';
 import { useLinkAction } from '../../hooks/useFormAction';
-import { Link } from '../../types/data';
-import { Links } from '../molecules/Links/Links';
+import { LinkItem } from '../molecules/LinkItem/Linktem';
 import { LinksMenu } from '../molecules/LinksMenu/LinksMenu';
 import { LinksWrapper } from '../molecules/LinksWrapper/LinksWrapper';
 import { NavigationForm } from '../organisms/NavigationForm/NavigationForm';
@@ -11,25 +12,27 @@ import { NavigationForm } from '../organisms/NavigationForm/NavigationForm';
 type NavigationLinksTemplateProps = {};
 
 export const NavigationLinksTemplate = memo<NavigationLinksTemplateProps>(() => {
-  const [links, setLinks] = useState<Link[]>([]);
-
-  const { linkAction, setAddLinkAction, setOffLinkAction } = useLinkAction();
-
-  console.log('linkAction', linkAction);
+  const { links, deleteLink } = useNavLinksContext();
+  const { linkAction, setAddLinkAction, setEditLinkAction, setOffLinkAction } = useLinkAction();
 
   return (
-    <div className="border-third-border-purple flex h-full min-h-[560px] w-full flex-col items-center justify-start border-[1px] border-dotted p-6">
+    <div className="flex h-full min-h-[560px] w-full flex-col items-center justify-start border-[1px] border-dotted border-third-border-purple p-6">
       <div className="flex h-full w-full flex-col items-center justify-center gap-l">
         {links.length ? (
           <LinksWrapper setAddLinkAction={setAddLinkAction}>
-            <Links links={links} setLinks={setLinks} />
+            {links.map((link, index) => (
+              <LinkItem
+                key={`${link.url}-${index}`}
+                icon={<MenuItemIcon className="mr-4 flex" />}
+                link={link}
+                deleteLink={() => deleteLink(link.id)}
+              />
+            ))}
           </LinksWrapper>
         ) : (
           <LinksMenu setAddLinkAction={setAddLinkAction} />
         )}
-        {linkAction === 'ADD' && (
-          <NavigationForm setLinks={setLinks} setOffLinkAction={setOffLinkAction} />
-        )}
+        {linkAction === 'ADD' && <NavigationForm setOffLinkAction={setOffLinkAction} />}
       </div>
     </div>
   );
