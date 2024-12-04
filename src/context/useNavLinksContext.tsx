@@ -1,20 +1,11 @@
 'use client';
 
-import {
-  createContext,
-  Dispatch,
-  FC,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useState,
-} from 'react';
+import { createContext, FC, ReactNode, useContext, useState } from 'react';
 import { NavDataForm } from '../components/molecules/Form/data';
 import { Link } from '../types/data';
 
 type NavLinksContextType = {
   links: Link[];
-  setLinks: Dispatch<SetStateAction<Link[]>>;
   addNewLink: (data: NavDataForm) => void;
   editLink: (data: NavDataForm, id: Link['id']) => void;
   deleteLink: (id: Link['id']) => void;
@@ -59,7 +50,7 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
   };
 
   return (
-    <NavLinksContext.Provider value={{ links, setLinks, addNewLink, editLink, deleteLink }}>
+    <NavLinksContext.Provider value={{ links, addNewLink, editLink, deleteLink }}>
       {children}
     </NavLinksContext.Provider>
   );

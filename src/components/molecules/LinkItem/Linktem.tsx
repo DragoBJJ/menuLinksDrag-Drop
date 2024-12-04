@@ -25,8 +25,8 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
         </div>
         <ActionButtons
           deleteLink={() => deleteLink(link.id)}
-          addLinkAction={setAddLinkAction}
-          editLinkAction={setEditLinkAction}
+          setAddAction={setAddLinkAction}
+          setEditAction={setEditLinkAction}
         />
       </div>
 
