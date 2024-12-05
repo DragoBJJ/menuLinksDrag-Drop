@@ -7,8 +7,8 @@ type MenuItemProps = {
 
 export const LinksWrapper = memo<MenuItemProps>(({ children, setAddLinkAction }) => {
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-md border-[1px] border-primary">
-      {children}
+    <div className="flex w-full flex-col overflow-hidden rounded-md border-[1px] border-primary bg-white">
+      <div className="w-ful h-full bg-secondary">{children}</div>
       <Button
         type="primary"
         title="Dodaj pozycję menu"
