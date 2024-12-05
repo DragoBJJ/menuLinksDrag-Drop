@@ -10,7 +10,7 @@ import { Link } from '../../../types/data';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/FormField/data';
 import FormField from '../../molecules/FormField/FormField';
-import { NavFormShema } from '../../molecules/FormField/type';
+import { NavFormShema } from '../../molecules/FormField/schema';
 
 type NavigationFormProps = {
   setOffLinkAction: () => void;

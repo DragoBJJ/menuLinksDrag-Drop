@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { memo, ReactNode, useState } from 'react';
-import { useLinkAction } from '../../../hooks/useFormAction';
+import { useLinkAction } from '../../../hooks/useLinkAction';
 import { Link } from '../../../types/data';
 import { Description } from '../../atoms/Description/Description';
 import { Header } from '../../atoms/Header/Header';

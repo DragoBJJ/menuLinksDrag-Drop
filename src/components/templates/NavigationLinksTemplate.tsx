@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { useLinkAction } from '../../hooks/useFormAction';
+import { useLinkAction } from '../../hooks/useLinkAction';
 import { LinksMenu } from '../molecules/LinksMenu/LinksMenu';
 import { NavigationForm } from '../organisms/NavigationForm/NavigationForm';
 

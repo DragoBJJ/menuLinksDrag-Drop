@@ -28,7 +28,7 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
         id: prev.length + 1,
         title: data.title,
         url: data.url || '',
-        tag: 'URL',
+        tag: data.url ? 'URL' : 'Kolekcja',
       },
     ]);
   };

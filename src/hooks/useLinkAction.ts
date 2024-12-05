@@ -19,7 +19,6 @@ export const useLinkAction = () => {
 
   return {
     linkAction,
-    setLinkAction,
     setOffLinkAction,
     setAddLinkAction,
     setEditLinkAction,
