@@ -1,13 +1,10 @@
 'use client';
 
-import { memo } from 'react';
 import { useLinkAction } from '../../hooks/useLinkAction';
 import { LinksMenu } from '../molecules/LinksMenu/LinksMenu';
 import { NavigationForm } from '../organisms/NavigationForm/NavigationForm';
 
-type NavigationLinksTemplateProps = {};
-
-export const NavigationLinksTemplate = memo<NavigationLinksTemplateProps>(() => {
+export const NavigationLinksTemplate = () => {
   const { linkAction, setAddLinkAction, setOffLinkAction } = useLinkAction();
 
   return (
@@ -18,4 +15,4 @@ export const NavigationLinksTemplate = memo<NavigationLinksTemplateProps>(() => 
       </div>
     </div>
   );
-});
+};

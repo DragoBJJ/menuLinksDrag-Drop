@@ -51,7 +51,9 @@ export const LinksMenu = memo<MenuProps>(({ setAddLinkAction }) => {
 
   return (
     <DndContext onDragEnd={handleDraggable} sensors={sensors} collisionDetection={closestCorners}>
-      <div className={`${wrapper} border-secondary bg-white p-6`}>
+      <div
+        className={`${wrapper} border-secondary p-6 ${links.length ? 'border-none bg-transparent' : 'bg-secondary'}`}
+      >
         {links.length ? (
           <SortableContext items={links} strategy={verticalListSortingStrategy}>
             <LinksWrapper setAddLinkAction={setAddLinkAction}>

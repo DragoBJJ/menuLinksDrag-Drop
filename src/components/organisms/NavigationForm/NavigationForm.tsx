@@ -29,8 +29,6 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const { addNewLink, editLink } = useNavLinksContext();
 
-  console.log('errors', errors);
-
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {
       link ? editLink(data, link.id) : addNewLink(data);
@@ -42,7 +40,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${wrapper} relative w-[1168px] border-primary p-6`}
+      className={`${wrapper} relative w-[1168px] border-primary bg-white p-6`}
     >
       <div onClick={() => setOffLinkAction()}>
         <DeleteIcon className="absolute right-[36.5px] top-[32.5px] cursor-pointer" />
