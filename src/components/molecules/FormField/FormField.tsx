@@ -19,7 +19,7 @@ const FormField = <T extends FieldValues>({
       type={type}
       defaultValue={defaultValue}
       placeholder={placeholder}
-      className="mt-2 h-10 w-full rounded-md border-[1px] border-primary px-3 py-4 text-base text-tertiary"
+      className="mt-2 h-10 w-full rounded-md border-[1px] border-primary px-3 py-4 text-base text-tertiary outline-none"
       {...register(name, { valueAsNumber })}
     />
     <FormMessage type="error" message={error?.message} />

@@ -1,6 +1,6 @@
 export type Link = {
   id: number;
   title: string;
-  url: string;
+  url?: string;
   tag?: string;
 };

@@ -41,6 +41,7 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
               ...prevLink,
               title: data.title,
               url: data.url || '',
+              tag: data.url ? 'URL' : 'Kolekcja',
             }
           : prevLink,
       ),

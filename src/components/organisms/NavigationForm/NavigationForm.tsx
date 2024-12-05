@@ -29,6 +29,8 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const { addNewLink, editLink } = useNavLinksContext();
 
+  console.log('errors', errors);
+
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {
       link ? editLink(data, link.id) : addNewLink(data);
