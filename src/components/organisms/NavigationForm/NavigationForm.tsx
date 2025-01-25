@@ -32,14 +32,18 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
   const modulo = (number: number) => number % 10;
 
   const run = (number: number) => {
-    const results = [];
-    const numStr = Math.abs(number).toString();
+    const factors: { [key: number]: string } = {
+      1000: 'Thousands',
+      100: 'Hundreds',
+      10: 'Tens',
+      1: 'Ones',
+    };
 
-    for (let i = 0; i < numStr.length; i++) {
-      const currentIndex = numStr.length - 1;
-      let current = numStr[currentIndex - i];
-      const rest = modulo(Number(current));
-      results.push(rest);
+    for (const [factor, tag] of Object.entries(factors).reverse()) {
+      const res = Math.floor(number / Number(factor));
+      if (res > 0) {
+        console.log(`${tag}: ${res % 10}`);
+      }
     }
   };
 
