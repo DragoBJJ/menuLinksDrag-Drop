@@ -29,8 +29,23 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const { addNewLink, editLink } = useNavLinksContext();
 
+  const modulo = (number: number) => number % 10;
+
+  const run = (number: number) => {
+    const results = [];
+    const numStr = Math.abs(number).toString();
+
+    for (let i = 0; i < numStr.length; i++) {
+      const currentIndex = numStr.length - 1;
+      let current = numStr[currentIndex - i];
+      const rest = modulo(Number(current));
+      results.push(rest);
+    }
+  };
+
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {
+      data.rune && run(Number(data.rune));
       link ? editLink(data, link.id) : addNewLink(data);
       reset();
       setOffLinkAction();
@@ -62,6 +77,15 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
           label="Link"
           name="url"
           defaultValue={link?.url}
+          register={register}
+          error={errors.url}
+        />
+        <FormField
+          type="number"
+          placeholder="Rune"
+          label="Rune"
+          name="rune"
+          defaultValue={link?.tag}
           register={register}
           error={errors.url}
         />
