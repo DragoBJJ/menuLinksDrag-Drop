@@ -5,6 +5,7 @@ import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import DeleteIcon from '../../../../public/images/delete.svg';
 import { useNavLinksContext } from '../../../context/useNavLinksContext';
+import { runes } from '../../../data/runes';
 import { wrapper } from '../../../styles/style';
 import { Link } from '../../../types/data';
 import { Button } from '../../atoms/Button/Button';
@@ -33,18 +34,33 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const run = (number: number) => {
     const factors: { [key: number]: string } = {
-      1000: 'Thousands',
-      100: 'Hundreds',
-      10: 'Tens',
-      1: 'Ones',
+      1000: '000',
+      100: '00',
+      10: '0',
+      1: '',
     };
+
+    const total = [];
 
     for (const [factor, tag] of Object.entries(factors).reverse()) {
       const res = Math.floor(number / Number(factor));
       if (res > 0) {
-        console.log(`${tag}: ${res % 10}`);
+        const result = Number(`${modulo(res)}${tag}`);
+        total.push(result);
       }
     }
+    const runesRepresentation = total.map((value) => runes[value]).join('');
+    console.log('runesRepresentation', runesRepresentation);
+
+    return runesRepresentation;
+  };
+
+  const generateSVG = (runesRepresentation: string) => {
+    return `
+      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        ${runesRepresentation}
+      </svg>
+    `;
   };
 
   const onSubmit = async (data: NavDataForm) => {
