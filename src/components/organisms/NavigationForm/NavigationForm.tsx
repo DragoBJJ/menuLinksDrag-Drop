@@ -7,7 +7,7 @@ import DeleteIcon from '../../../../public/images/delete.svg';
 import { useNavLinksContext } from '../../../context/useNavLinksContext';
 import { wrapper } from '../../../styles/style';
 import { Link } from '../../../types/data';
-import { mapNumberRepresentationsToRunes, numberBreakdown } from '../../../utils/runes';
+import { generateRunes } from '../../../utils/runes';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/FormField/data';
 import FormField from '../../molecules/FormField/FormField';
@@ -30,22 +30,9 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const { addNewLink, editLink } = useNavLinksContext();
 
-  const run = (numRepresentation: number) => {
-    const total = numberBreakdown(numRepresentation);
-    return mapNumberRepresentationsToRunes(total);
-  };
-
-  const generateSVG = (runesRepresentation: string) => {
-    return `
-      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-        ${runesRepresentation}
-      </svg>
-    `;
-  };
-
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {
-      data.rune && run(Number(data.rune));
+      data.rune && generateRunes(Number(data.rune));
       link ? editLink(data, link.id) : addNewLink(data);
       reset();
       setOffLinkAction();
@@ -104,6 +91,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
           title={link ? 'Edytuj' : 'Dodaj'}
           className="border-primary-purple text-secondary-purple"
         />
+        <Button actionType="button" type="primary" title="Wygeneruj" />
       </div>
     </form>
   );

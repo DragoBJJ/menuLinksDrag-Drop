@@ -3,4 +3,5 @@ export type Link = {
   title: string;
   url?: string;
   tag?: string;
+  rune?: string;
 };

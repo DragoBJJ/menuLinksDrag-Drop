@@ -5,6 +5,7 @@ import { useLinkAction } from '../../../hooks/useLinkAction';
 import { Link } from '../../../types/data';
 import { Description } from '../../atoms/Description/Description';
 import { Header } from '../../atoms/Header/Header';
+import { Rune } from '../../atoms/Rune/Rune';
 import { Tag } from '../../atoms/Tag/Tag';
 import { NavigationForm } from '../../organisms/NavigationForm/NavigationForm';
 import { ActionButtons } from '../ActionButtons/ActionButtons';
@@ -61,6 +62,7 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
             {link.tag && <Tag type={link.url ? 'secondary' : 'primary'} title={link.tag} />}
           </div>
           {link.url && <Description text={link.url} />}
+          {link.rune && <Rune />}
         </div>
 
         <ActionButtons
