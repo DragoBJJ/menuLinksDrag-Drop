@@ -35,4 +35,10 @@ export const runes = {
   7000: '<path d="M5 5 L35 5 L35 35 L5 35" stroke="black" fill="none"/>',
   8000: '<path d="M5 20 L35 20 M20 5 L20 35"/>',
   9000: '<circle cx="20" cy="20" r="15" stroke="black" fill="none"/>',
-} as const;
+};
+
+export type RunesKey = keyof typeof runes;
+
+type FactorKey = 1000 | 100 | 10 | 1;
+
+export type Factor = Record<FactorKey, string>;

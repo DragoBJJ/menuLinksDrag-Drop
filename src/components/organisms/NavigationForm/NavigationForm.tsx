@@ -5,9 +5,9 @@ import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 import DeleteIcon from '../../../../public/images/delete.svg';
 import { useNavLinksContext } from '../../../context/useNavLinksContext';
-import { runes } from '../../../data/runes';
 import { wrapper } from '../../../styles/style';
 import { Link } from '../../../types/data';
+import { mapNumberRepresentationsToRunes, numberBreakdown } from '../../../utils/runes';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/FormField/data';
 import FormField from '../../molecules/FormField/FormField';
@@ -30,29 +30,9 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const { addNewLink, editLink } = useNavLinksContext();
 
-  const modulo = (number: number) => number % 10;
-
-  const run = (number: number) => {
-    const factors: { [key: number]: string } = {
-      1000: '000',
-      100: '00',
-      10: '0',
-      1: '',
-    };
-
-    const total = [];
-
-    for (const [factor, tag] of Object.entries(factors).reverse()) {
-      const res = Math.floor(number / Number(factor));
-      if (res > 0) {
-        const result = Number(`${modulo(res)}${tag}`);
-        total.push(result);
-      }
-    }
-    const runesRepresentation = total.map((value) => runes[value]).join('');
-    console.log('runesRepresentation', runesRepresentation);
-
-    return runesRepresentation;
+  const run = (numRepresentation: number) => {
+    const total = numberBreakdown(numRepresentation);
+    return mapNumberRepresentationsToRunes(total);
   };
 
   const generateSVG = (runesRepresentation: string) => {
