@@ -70,7 +70,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
           placeholder="Rune"
           label="Rune"
           name="rune"
-          defaultValue={link?.rune}
+          defaultValue={String(link?.rune)}
           register={register}
           error={errors.rune}
         />
