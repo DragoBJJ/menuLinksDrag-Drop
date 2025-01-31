@@ -1,7 +1,7 @@
-import { runes, RunesKey } from '../data/runes';
+import { Factor, runes, RunesKey } from '../data/runes';
 
-export const numberBreakdown = (numRepresentation: number) => {
-  const factors = [1000, 100, 10, 1];
+export const numbersSequenceBreakdown = (numRepresentation: number) => {
+  const factors: Factor[] = [1000, 100, 10, 1];
   const total = [];
   for (const factor of factors) {
     const digit = Math.floor(numRepresentation / factor);
@@ -13,13 +13,13 @@ export const numberBreakdown = (numRepresentation: number) => {
   return total;
 };
 
-export const mapNumberRepresentationsToRunes = (numRepresentations: number[]) => {
+export const mapNumberRepresentationToRunes = (numRepresentations: number[]) => {
   return numRepresentations.map((value) => runes[value as RunesKey]).join('');
 };
 
-export const generateRunes = (numRepresentation: number) => {
-  const total = numberBreakdown(numRepresentation);
-  return mapNumberRepresentationsToRunes(total);
+export const generateRune = (numRepresentation: number) => {
+  const total = numbersSequenceBreakdown(numRepresentation);
+  return mapNumberRepresentationToRunes(total);
 };
 
 export const generateSVG = (runesRepresentation: string) => {

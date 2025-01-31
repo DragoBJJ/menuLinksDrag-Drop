@@ -5,8 +5,8 @@ import { useLinkAction } from '../../../hooks/useLinkAction';
 import { Link } from '../../../types/data';
 import {
   generateSVG,
-  mapNumberRepresentationsToRunes,
-  numberBreakdown,
+  mapNumberRepresentationToRunes,
+  numbersSequenceBreakdown,
 } from '../../../utils/runes';
 import { downloadSVG } from '../../../utils/utils';
 import { Description } from '../../atoms/Description/Description';
@@ -51,8 +51,8 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
     transition,
   };
 
-  const representation = numberBreakdown(Number(link.rune));
-  const rune = representation?.length && mapNumberRepresentationsToRunes(representation);
+  const numbersSequence = numbersSequenceBreakdown(Number(link.rune));
+  const rune = numbersSequence.length && mapNumberRepresentationToRunes(numbersSequence);
   const runeImg = rune && generateSVG(rune);
 
   return (
@@ -73,7 +73,12 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
             {link.tag && <Tag type={link.url ? 'secondary' : 'primary'} title={link.tag} />}
           </div>
           {link.url && <Description text={link.url} />}
-          {runeImg && <Rune runeImg={runeImg} />}
+          {link.rune && (
+            <div className="m-auto flex h-full w-full items-center justify-start">
+              {runeImg && <Rune runeImg={runeImg} />}
+              <Description text={`${numbersSequence.map((item) => item).join(' - ')}`} />
+            </div>
+          )}
         </div>
 
         <ActionButtons

@@ -73,7 +73,7 @@ export const LinksMenu = memo<MenuProps>(({ setAddLinkAction }) => {
             description="There are no runes in this menu yet."
             actionButton={
               <Button
-                title="Add a menu item"
+                title="Add rune to menu"
                 icon={<AddIcon className="cursor-pointer" />}
                 onClick={() => setAddLinkAction()}
                 className="mt-6 gap-[4px]"

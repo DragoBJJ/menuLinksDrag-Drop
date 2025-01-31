@@ -11,9 +11,9 @@ export const LinksWrapper = memo<MenuLinksWrapperProps>(({ children, setAddLinkA
       <div className="w-ful h-full bg-secondary">{children}</div>
       <Button
         type="primary"
-        title="Dodaj pozycję menu"
-        onClick={() => setAddLinkAction()}
-        className="mx-6 my-5 bg-white text-secondary-dark"
+        title="Add rune to menu"
+        onClick={setAddLinkAction}
+        className="z-10 mx-6 my-5 bg-white text-secondary-dark"
       />
     </div>
   );

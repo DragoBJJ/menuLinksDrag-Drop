@@ -39,6 +39,4 @@ export const runes = {
 
 export type RunesKey = keyof typeof runes;
 
-type FactorKey = 1000 | 100 | 10 | 1;
-
-export type Factor = Record<FactorKey, string>;
+export type Factor = 1000 | 100 | 10 | 1;
