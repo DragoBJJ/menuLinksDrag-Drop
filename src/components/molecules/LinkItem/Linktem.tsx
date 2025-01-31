@@ -3,6 +3,12 @@ import { CSS } from '@dnd-kit/utilities';
 import { memo, ReactNode, useState } from 'react';
 import { useLinkAction } from '../../../hooks/useLinkAction';
 import { Link } from '../../../types/data';
+import {
+  generateSVG,
+  mapNumberRepresentationsToRunes,
+  numberBreakdown,
+} from '../../../utils/runes';
+import { downloadSVG } from '../../../utils/utils';
 import { Description } from '../../atoms/Description/Description';
 import { Header } from '../../atoms/Header/Header';
 import { Rune } from '../../atoms/Rune/Rune';
@@ -24,6 +30,7 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
     disabled: !isDraggingEnabled,
     id: link.id,
   });
+
   const setAddAction = () => {
     setAddLinkAction();
     setIsDraggingEnabled(false);
@@ -44,6 +51,10 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
     transition,
   };
 
+  const representation = numberBreakdown(Number(link.rune));
+  const rune = representation?.length && mapNumberRepresentationsToRunes(representation);
+  const runeImg = rune && generateSVG(rune);
+
   return (
     <div
       ref={setNodeRef}
@@ -62,13 +73,14 @@ export const LinkItem = memo<LinkItemProps>(({ icon, link, deleteLink }) => {
             {link.tag && <Tag type={link.url ? 'secondary' : 'primary'} title={link.tag} />}
           </div>
           {link.url && <Description text={link.url} />}
-          {link.rune && <Rune />}
+          {runeImg && <Rune runeImg={runeImg} />}
         </div>
 
         <ActionButtons
           deleteLink={() => deleteLink(link.id)}
           setAddAction={setAddAction}
           setEditAction={setEditAction}
+          downloadRune={() => runeImg && downloadSVG(runeImg, 'rune')}
         />
       </div>
 

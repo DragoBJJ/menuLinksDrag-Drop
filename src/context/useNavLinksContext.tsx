@@ -26,10 +26,8 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
       ...prev,
       {
         id: prev.length + 1,
-        title: data.title,
-        url: data.url || '',
+        ...data,
         tag: data.url ? 'URL' : 'Collection',
-        rune: data.rune,
       },
     ]);
   };
@@ -40,8 +38,7 @@ export const NavLinksProvider: FC<NavLinksProviderProps> = ({ children }) => {
         prevLink.id === id
           ? {
               ...prevLink,
-              title: data.title,
-              url: data.url || '',
+              ...data,
               tag: data.url ? 'URL' : 'Kolekcja',
             }
           : prevLink,

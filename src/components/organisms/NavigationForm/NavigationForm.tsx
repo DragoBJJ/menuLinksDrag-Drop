@@ -7,7 +7,6 @@ import DeleteIcon from '../../../../public/images/delete.svg';
 import { useNavLinksContext } from '../../../context/useNavLinksContext';
 import { wrapper } from '../../../styles/style';
 import { Link } from '../../../types/data';
-import { generateRunes } from '../../../utils/runes';
 import { Button } from '../../atoms/Button/Button';
 import { NavDataForm } from '../../molecules/FormField/data';
 import FormField from '../../molecules/FormField/FormField';
@@ -32,7 +31,6 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
 
   const onSubmit = async (data: NavDataForm) => {
     if (isValid) {
-      data.rune && generateRunes(Number(data.rune));
       link ? editLink(data, link.id) : addNewLink(data);
       reset();
       setOffLinkAction();
@@ -51,8 +49,8 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
       <div className="flex h-full w-full flex-col gap-xs">
         <FormField
           type="text"
-          placeholder="np. Promocje"
-          label="Nazwa"
+          placeholder="np. Aztec runes"
+          label="Name"
           name="title"
           defaultValue={link?.title}
           register={register}
@@ -60,7 +58,7 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
         />
         <FormField
           type="text"
-          placeholder="Wklej lub wyszukaj"
+          placeholder="Paste or search"
           label="Link"
           name="url"
           defaultValue={link?.url}
@@ -72,9 +70,9 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
           placeholder="Rune"
           label="Rune"
           name="rune"
-          defaultValue={link?.tag}
+          defaultValue={link?.rune}
           register={register}
-          error={errors.url}
+          error={errors.rune}
         />
       </div>
 
@@ -82,16 +80,15 @@ export const NavigationForm = memo<NavigationFormProps>(({ setOffLinkAction, lin
         <Button
           actionType="button"
           type="secondary"
-          title="Anuluj"
+          title="Cancel"
           onClick={() => setOffLinkAction()}
         />
         <Button
           actionType="submit"
           type="secondary"
-          title={link ? 'Edytuj' : 'Dodaj'}
+          title={link ? 'Edit' : 'Add'}
           className="border-primary-purple text-secondary-purple"
         />
-        <Button actionType="button" type="primary" title="Wygeneruj" />
       </div>
     </form>
   );

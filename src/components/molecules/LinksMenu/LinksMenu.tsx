@@ -69,11 +69,11 @@ export const LinksMenu = memo<MenuProps>(({ setAddLinkAction }) => {
           </SortableContext>
         ) : (
           <EmptyMenu
-            title="Menu jest puste"
-            description="W tym menu nie ma jeszcze żadnych linków."
+            title="Menu is Empty"
+            description="There are no runes in this menu yet."
             actionButton={
               <Button
-                title="Dodaj pozycję menu"
+                title="Add a menu item"
                 icon={<AddIcon className="cursor-pointer" />}
                 onClick={() => setAddLinkAction()}
                 className="mt-6 gap-[4px]"
